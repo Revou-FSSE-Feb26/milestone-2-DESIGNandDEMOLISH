@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RevoFun| ClickerGame</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="clickerGame.js" defer></script>
+  </head>
+  <body class="flex flex-col items-center mt-10 bg-gray-700 text-white">
+    <button>
+      <a class="text-3xl text-white absolute left-2" href="../index.html"
+        >🀫 Back</a
+      >
+    </button>
+    <section
+      id="boardContainer"
+      class="hidden mb-10 border absolute p-5 rounded-2xl text-white bg-gray-900 h-160 w-130"
+    >
+      <div>
+        <h2 class="text-5xl p-5 text-center">Leader Board</h2>
+        <div id="userList" class="text-2xl pl-[20px]"></div>
+      </div>
+      <div class="flex justify-center mt-20">
+        <button
+          id="replay"
+          class="text-center cursor-pointer bg-green-500 rounded-full"
+        >
+          Play Again
+        </button>
+      </div>
+    </section>
+    <form
+      id="container"
+      class="flex flex-col justify-center gap-5 items-center mb-10 border p-5 rounded-xl w-100 h-100 absolute bg-black"
+    >
+      <label for="userName">Username</label>
+      <input
+        type="text"
+        id="userName"
+        class="border-b-2"
+        placeholder="Username"
+        required
+      />
+      <button id="submitButton" class="bg-white rounded-full text-black p-3">
+        Start Game
+      </button>
+    </form>
+
+    <section class="">
+      <h1 class="text-5xl text-center">Clicker Game</h1>
+    </section>
+    <section
+      class="my-10 flex flex-col items-center bg-gray-500 p-20 rounded-xl w-100 h-130"
+    >
+      <div class="text-3xl flex mb-10 flex-col items-center">
+        <h2>Timer</h2>
+        <p id="timer" class="text-white"></p>
+      </div>
+      <button
+        id="btn"
+        class="text-3xl cursor-pointer hover:text-red-800 mt-10 border p-3 rounded-full mb-10"
+      >
+        Click Me!
+      </button>
+      <p id="point" class="text-white text-3xl"></p>
+      <p id="statusBar" class="text-white text-xl"></p>
+    </section>
+  </body>
+</html>

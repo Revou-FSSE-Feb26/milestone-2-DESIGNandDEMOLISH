@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="rockPaperScissor.js" defer></script>
+    <title>RevoFun|RockPapaerScissors</title>
+  </head>
+  <body>
+    <button>
+      <a class="text-3xl text-black absolute left-2" href="../index.html"
+        >🀫 Back</a
+      >
+    </button>
+    <section
+      id="boardContainer"
+      class="hidden mb-10 border absolute p-5 rounded-2xl text-white bg-gray-900 h-160 w-130"
+    >
+      <div>
+        <h2 class="text-5xl p-5 text-center">Leader Board</h2>
+        <div id="userList" class="text-2xl pl-[20px]"></div>
+      </div>
+      <div class="flex justify-center mt-20">
+        <button
+          id="replay"
+          class="text-center cursor-pointer bg-green-500 rounded-full"
+        >
+          Play Again
+        </button>
+      </div>
+    </section>
+    <form
+      id="container"
+      class="flex flex-col text-white justify-center gap-5 items-center mb-10 ml-[35%] border p-5 rounded-xl w-100 h-100 absolute bg-black"
+    >
+      <label for="userName">Username</label>
+      <input
+        type="text"
+        id="userName"
+        class="border-b-2"
+        placeholder="Username"
+        required
+      />
+      <button id="submitButton" class="bg-white rounded-full text-black p-3">
+        Start Game
+      </button>
+    </form>
+    <section>
+      <h1 class="text-3xl text-center my-5">ROCK-PAPER-SCISSOR GAMES</h1>
+    </section>
+    <section class="flex gap-10 my-5 justify-center">
+      <div>
+        <p class="text-3xl">Rock</p>
+        <button id="rockButton" class="text-8xl cursor-pointer">✊</button>
+      </div>
+      <div>
+        <p class="text-3xl">Paper</p>
+        <button id="paperButton" class="text-8xl cursor-pointer">✋</button>
+      </div>
+      <div>
+        <p class="text-3xl">Scissor</p>
+        <button id="scissorButton" class="text-8xl cursor-pointer">✌️</button>
+      </div>
+    </section>
+    <section>
+      <p id="statusBar" class="text-3xl text-center mb-6">Let's Play</p>
+    </section>
+    <section class="flex justify-center gap-20">
+      <div>
+        <p>Player Scores</p>
+        <p id="userScore" class="text-center">0</p>
+      </div>
+      <div>
+        <p>Computer Scores</p>
+        <p id="computerScore" class="text-center">0</p>
+      </div>
+    </section>
+    <section class="flex gap-20 justify-center">
+      <div>
+        <p>Player Choice</p>
+        <p id="userDisplay"></p>
+      </div>
+      <div>
+        <p>Computer Choise</p>
+        <p id="computerDisplay"></p>
+      </div>
+    </section>
+  </body>
+</html>
