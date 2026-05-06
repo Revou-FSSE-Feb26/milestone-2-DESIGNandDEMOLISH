@@ -5,54 +5,183 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="index.js" defer></script>
+    <style>
+      .scroll-container {
+        height: 90px;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: bottom;
+      }
+
+      .scroll-text {
+        animation: scrollUp 6s ease infinite;
+      }
+
+      .scroll-text span {
+        display: block;
+        height: 90px;
+        line-height: 90px;
+      }
+
+      @keyframes scrollUp {
+        0%,
+        28% {
+          transform: translateY(0);
+        }
+        33%,
+        61% {
+          transform: translateY(-90px);
+        }
+        66%,
+        100% {
+          transform: translateY(-180px);
+        }
+      }
+    </style>
   </head>
-  <body>
+  <body class="bg-gray-700 text-white">
     <header>
-      <section
-        class="grid md:grid-cols-[15%_85%] px-2 h-15 items-center border-red-500 border-4"
+      <div
+        class="bg-[url(/image/revoBg.jpg)] bg-cover bg-no-repeat bg-center h-screen flex flex-col"
       >
-        <div
-          class="flex border-black w-full md:w-auto justify-between border-4"
+        <section
+          class="grid md:grid-cols-[15%_85%] py-2 px-2 items-center shrink-0"
         >
-          <a href="#home">REVOFUN</a>
-          <label for="menu-toogle" class="cursor-pointer md:hidden"
-            >&#9776;</label
-          >
-        </div>
-        <div
-          class="flex w-full border-purple-500 border-4 h-13 items-center hidden md:block"
-        >
-          <input type="checkbox" id="menu-toogle" class="peer hidden" />
-          <nav class="border-green-500 border-4 h-11">
-            <ul class="grid grid-cols-3 gap-3">
-              <li>
-                <div
-                  class="text-center border-gray-500 border-2 rounded-full hover:text-red-500 hover:text-lg"
-                >
-                  <a href="#home">homepage</a>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="text-center border-gray-500 border-2 rounded-full hover:text-red-500 hover:text-lg"
-                >
-                  <a href="#games">Game List</a>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="text-center border-gray-500 border-2 rounded-full hover:text-red-500 hover:text-lg"
-                >
-                  <a href="#contact">Contact Us</a>
-                </div>
-              </li>
-            </ul>
-          </nav>
-          <!-- <div>
-            <button>Login</button>
-          </div> -->
+          <div class="flex text-2xl w-full justify-between md:w-auto">
+            <a href="#home">REVOFUN</a>
+            <label
+              id="hamburger-button"
+              for="menu-toogle"
+              class="cursor-pointer text-4xl mr-2 md:hidden"
+              >&#9776;</label
+            >
+          </div>
+
+          <div id="hamburger-menu" class="flex items-center hidden md:block">
+            <nav class="p-2 mx-8 mt-40 right-[0] fixed">
+              <ul class="flex flex-col gap-3">
+                <li>
+                  <div class="text-center rounded-full hover:text-red-500">
+                    <a href="#home">homepage</a>
+                  </div>
+                </li>
+
+                <li class="gameContainer">
+                  <div class="text-center rounded-full hover:text-red-500">
+                    <a href="#games">Game List </a>
+                  </div>
+                  <ul
+                    id="gameList"
+                    class="hidden flex flex-col justify-center items-center"
+                  >
+                    <li>
+                      <a href="/clickerGame/clickerGame.html">Clicker Game</a>
+                    </li>
+                    <li>
+                      <a href="/numberGuessing/numbberGuessing.html"
+                        >Number Guessing</a
+                      >
+                    </li>
+                    <li>
+                      <a href="/RockPaperScissor/rockPaperScissor.html"
+                        >Rock Paper Scissor</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <div class="text-center rounded-full hover:text-red-500">
+                    <a href="#contact">Contact Us</a>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </section>
+        <section class="w-auto flex flex-1 justify-end items-end">
+          <h1 class="scroll-container align-bottom text-4xl mb-8 mr-8">
+            <span class="scroll-text flex flex-col px-4">
+              <span>Join Us</span>
+              <span>In This Interactive</span>
+              <span>Mini Games</span>
+            </span>
+          </h1>
+        </section>
+      </div>
+    </header>
+    <main>
+      <section class="flex flex-col gap-6 my-10 items-center px-5 min-h-screen">
+        <h2 class="text-4xl">About Us</h2>
+        <p>
+          This is simple interactice games create using HTML, CSS, and
+          Jacascript, i hope you guys enjoy it and don't forget to give us
+          feedback
+        </p>
+      </section>
+
+      <section
+        class="grid bg-[linear-gradient(to_bottom,#2a2a2a,#171717,#0a0a0a)] min-h-screen"
+      >
+        <h2 class="self-center text-4xl text-center">Games List</h2>
+
+        <div class="card-container text-xl border-4 border-red-600">
+          <div class="h-[180px] flex items-center">
+            <div class="slide-card gap-4 mx-10 p-3 grid grid-cols-[30%_70%]">
+              <div>
+                <a href="./clickerGame/clickerGame.html">
+                  <img src="./image/game1.jpg" alt="" />
+                </a>
+              </div>
+              <div>
+                <p class="text-center text-2xl text-gray-300">Clicker Games</p>
+                <p class="text-gray-400">
+                  This clicker games simplely only need you to click the button
+                  until the timer run out
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide-card gap-4 mx-10 p-3 grid grid-cols-[30%_70%]">
+            <div>
+              <a href="./numberGuessing/numbberGuessing.html">
+                <img src="./image/game2.jpeg" alt="" />
+              </a>
+            </div>
+            <div>
+              <p class="text-center text-2xl text-gray-300">Number Guessing</p>
+              <p class="text-gray-400">
+                This game let you guess the secret number from 1-100 within 10
+                chance
+              </p>
+            </div>
+          </div>
+
+          <div class="slide-card mx-10 p-3 gap-4 grid grid-cols-[30%_70%]">
+            <div>
+              <a href="./RockPaperScissor/rockPaperScissor.html">
+                <img src="./image/game3.jpg" alt="" />
+              </a>
+            </div>
+            <div>
+              <p class="text-center text-2xl text-gray-300">
+                Rock Paper Scissor
+              </p>
+              <p class="text-gray-400">
+                This is the classic Rock Paper Scissor game that let you choose
+                one of them againts the computer
+              </p>
+            </div>
+          </div>
         </div>
       </section>
-    </header>
+    </main>
+    <footer>
+      <section>
+        <h2>Contact</h2>
+      </section>
+    </footer>
   </body>
 </html>

@@ -7,20 +7,54 @@ let userDisplay = document.getElementById("userDisplay");
 let computerDisplay = document.getElementById("computerDisplay");
 let statusBar = document.getElementById("statusBar");
 let userContainer = document.getElementById("container");
-let username = document.getElementById("userName");
+let userName = document.getElementById("userName");
 let submitButton = document.getElementById("submitButton");
 let maxPoint = 10;
 let playerScore = 0;
 let comScore = 0;
 
+//leaderBoard
+let boardContainer = document.getElementById("boardContainer");
+let userList = document.getElementById("userList");
+let replay = document.getElementById("replay");
+let gameState = {
+    playerPoint :0,
+    playerName : "",
+};
+let saved = localStorage.getItem("leaderboard3");
+let leaderBoardList = saved? JSON.parse(saved) : [];
+
+//leaderBoar Function
+function leaderBoard() {
+    playerHistory = {
+        name: gameState.playerName,
+        point: gameState.playerPoint,
+    };
+    let textList = "<ol>";
+    leaderBoardList.push(playerHistory);
+    leaderBoardList = leaderBoardList.sort((a, b) => b.point - a.point);
+    leaderBoardList = leaderBoardList.slice(0, 5);
+    leaderBoardList.forEach((element, index) => {
+        textList += `<li>${index + 1}. ${element.name}   ${element.point} Points`;        
+    });
+    textList += "</ol>"
+    boardContainer.style.display ="block";
+    userList.innerHTML = textList;
+    localStorage.setItem("leaderboard3", JSON.stringify(leaderBoardList));
+};
+
 function gameStart (event) {
     function checkStatus () {
         if (playerScore === maxPoint) {
         statusBar.textContent ="Congrats,You Win the Game!!";
+        gameState.playerPoint = playerScore * 20;
+        leaderBoard();
         return true;
     };
         if (comScore === maxPoint) {
         statusBar.textContent ="To Bad, you lose!";
+        gameState.playerPoint = playerScore * 20;
+        leaderBoard();
         return true;
         };
         return false;
@@ -83,10 +117,23 @@ function gameStart (event) {
     };
 };
 
+function reset() {
+    playerScore = 0;
+    comScore = 0;
+    userScore.textContent = playerScore;
+    computerScore.textContent = comScore;
+    userDisplay.innerHTML = "";
+    computerDisplay.innerHTML = "";
+    boardContainer.style.display = "none";
+};
+
+replay.addEventListener("click",reset);
+
 rock.addEventListener("click",gameStart);
 paper.addEventListener("click", gameStart);
 scissor.addEventListener("click", gameStart);
 userContainer.addEventListener("submit",function(event) {
     event.preventDefault();
+    gameState.playerName = userName.value;
     userContainer.style.display = "none";
 });

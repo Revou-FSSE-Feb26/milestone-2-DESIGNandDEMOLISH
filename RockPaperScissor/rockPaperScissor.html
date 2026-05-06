@@ -7,12 +7,31 @@
     <script src="rockPaperScissor.js" defer></script>
     <title>RevoFun|RockPapaerScissors</title>
   </head>
-  <body>
+  <body
+    class="bg-[linear-gradient(to_bottom,#2a2a2a,#171717,#0a0a0a)] text-white min-h-screen"
+  >
     <button>
-      <a class="text-3xl text-black absolute left-2" href="../index.html"
+      <a class="text-3xl text-white absolute left-2" href="../index.html"
         >🀫 Back</a
       >
     </button>
+    <section
+      id="boardContainer"
+      class="hidden mb-10 border absolute p-5 rounded-2xl text-white bg-gray-900 h-160 w-130"
+    >
+      <div>
+        <h2 class="text-5xl p-5 text-center">Leader Board</h2>
+        <div id="userList" class="text-2xl pl-[20px]"></div>
+      </div>
+      <div class="flex justify-center mt-20">
+        <button
+          id="replay"
+          class="text-center cursor-pointer bg-green-500 rounded-full"
+        >
+          Play Again
+        </button>
+      </div>
+    </section>
     <section
       id="boardContainer"
       class="hidden mb-10 border absolute p-5 rounded-2xl text-white bg-gray-900 h-160 w-130"
