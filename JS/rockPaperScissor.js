@@ -2,66 +2,48 @@ let rock = document.getElementById("rockButton");
 let paper = document.getElementById("paperButton");
 let scissor = document.getElementById("scissorButton");
 let userScore = document.getElementById("userScore");
-let computerScore = document.getElementById("computerScore");
+let computerScoreText = document.getElementById("computerScore");
 let userDisplay = document.getElementById("userDisplay");
 let computerDisplay = document.getElementById("computerDisplay");
 let statusBar = document.getElementById("statusBar");
-let userContainer = document.getElementById("container");
-let userName = document.getElementById("userName");
-let submitButton = document.getElementById("submitButton");
+
+
+let gameForm = document.getElementById("gameForm");
 let maxPoint = 10;
 let playerScore = 0;
-let comScore = 0;
+let computerScore = 0;
 
-//leaderBoard
-let boardContainer = document.getElementById("boardContainer");
-let userList = document.getElementById("userList");
-let replay = document.getElementById("replay");
-let gameState = {
-    playerPoint :0,
-    playerName : "",
-};
+//save data
 let saved = localStorage.getItem("leaderboard3");
 let leaderBoardList = saved? JSON.parse(saved) : [];
 
-//leaderBoar Function
-function leaderBoard() {
-    playerHistory = {
-        name: gameState.playerName,
-        point: gameState.playerPoint,
-    };
-    let textList = "<ol>";
-    leaderBoardList.push(playerHistory);
-    leaderBoardList = leaderBoardList.sort((a, b) => b.point - a.point);
-    leaderBoardList = leaderBoardList.slice(0, 5);
-    leaderBoardList.forEach((element, index) => {
-        textList += `<li>${index + 1}. ${element.name}   ${element.point} Points`;        
-    });
-    textList += "</ol>"
-    boardContainer.style.display ="block";
-    userList.innerHTML = textList;
-    localStorage.setItem("leaderboard3", JSON.stringify(leaderBoardList));
+//update data
+function updateLeaderBoard() {
+    leaderBoardList = leaderBoard(leaderBoardList);
+    localStorage.setItem("leaderboard2", JSON.stringify(leaderBoardList));
 };
 
 function gameStart (event) {
+    // Function to determine if the game has reached the max point limit
     function checkStatus () {
         if (playerScore === maxPoint) {
         statusBar.textContent ="Congrats,You Win the Game!!";
-        gameState.playerPoint = playerScore * 20;
-        leaderBoard();
-        return true;
+        gameState.playerPoint = playerScore * 20; // formula to create point
+        updateLeaderBoard();
+        return true; // Returns true to trigger a stop in the main game loop
     };
-        if (comScore === maxPoint) {
+        if (computerScore === maxPoint) {
         statusBar.textContent ="To Bad, you lose!";
         gameState.playerPoint = playerScore * 20;
-        leaderBoard();
+        updateLeaderBoard();
         return true;
         };
         return false;
     };
 
-    let userChoice = event.target.textContent;
+    let userChoice = event.submitter.textContent;
 
+    // Logic for the computer's random choice (1=Rock, 2=Paper, 3=Scissors)
     let computerChoise = Math.floor(Math.random()*3)+1;
 
     switch(computerChoise) {
@@ -76,6 +58,7 @@ function gameStart (event) {
         break;
     };
 
+    // Early exit: If the game is already over, do not process the new click
     if (checkStatus()) return;
 
     if (userChoice === computerChoise) {
@@ -109,8 +92,8 @@ function gameStart (event) {
 
     } else {
         statusBar.textContent ="You Lose!";
-        comScore++;
-        computerScore.textContent = comScore;
+        computerScore++;
+        computerScoreText.textContent = computerScore;
         userDisplay.innerHTML = userChoice;
         computerDisplay.innerHTML = computerChoise;
         if (checkStatus()) return;
@@ -119,9 +102,9 @@ function gameStart (event) {
 
 function reset() {
     playerScore = 0;
-    comScore = 0;
+    computerScore = 0;
     userScore.textContent = playerScore;
-    computerScore.textContent = comScore;
+    computerScoreText.textContent = computerScore;
     userDisplay.innerHTML = "";
     computerDisplay.innerHTML = "";
     boardContainer.style.display = "none";
@@ -129,9 +112,12 @@ function reset() {
 
 replay.addEventListener("click",reset);
 
-rock.addEventListener("click",gameStart);
-paper.addEventListener("click", gameStart);
-scissor.addEventListener("click", gameStart);
+gameForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    gameStart(e);
+});
+
+
 userContainer.addEventListener("submit",function(event) {
     event.preventDefault();
     gameState.playerName = userName.value;

@@ -4,41 +4,19 @@ let guessButton = document.getElementById("guess");
 let deleteButton = document.getElementById("delete");
 let resetButton = document.getElementById("replay");
 let chance = document.getElementById("chance");
-let userContainer = document.getElementById("container");
-let userName = document.getElementById("userName");
-let submitButton = document.getElementById("submitButton");
 let gameForm = document.getElementById("gameForm");
+
 let secretNumber = Math.floor(Math.random()*100)+1;
 let maxChance = 10;
 chance.textContent = maxChance;
 
-//leaderBoard
-let boardContainer = document.getElementById("boardContainer");
-let userList = document.getElementById("userList");
-let replay = document.getElementById("replay");
-let gameState = {
-    playerPoint :0,
-    playerName : "",
-};
+//save data
 let saved = localStorage.getItem("leaderboard2");
 let leaderBoardList = saved? JSON.parse(saved) : [];
 
-//leaderBoar Function
-function leaderBoard() {
-    playerHistory = {
-        name: gameState.playerName,
-        point: gameState.playerPoint,
-    };
-    let textList = "<ol>";
-    leaderBoardList.push(playerHistory);
-    leaderBoardList = leaderBoardList.sort((a, b) => b.point - a.point);
-    leaderBoardList = leaderBoardList.slice(0, 5);
-    leaderBoardList.forEach((element, index) => {
-        textList += `<li>${index + 1}. ${element.name}   ${element.point} Points`;        
-    });
-    textList += "</ol>"
-    boardContainer.style.display ="block";
-    userList.innerHTML = textList;
+//update data
+function updateLeaderBoard() {
+    leaderBoardList = leaderBoard(leaderBoardList);
     localStorage.setItem("leaderboard2", JSON.stringify(leaderBoardList));
 };
 
@@ -46,9 +24,10 @@ function checkChance () {
 if (maxChance === 0) {
     statusBar.textContent = "Game Over!! the Number was " + secretNumber;
     gameState.playerPoint = 0;
-    leaderBoard();
-    return;
-};
+    updateLeaderBoard();
+    return true;
+}; 
+return false;
 };
 
 function startGame() {
@@ -56,8 +35,8 @@ let userGuess = Number(numberGuess.value)
 
 if (userGuess === secretNumber) {
     statusBar.textContent = "Congrats You got it!!"
-    gameState.playerPoint = maxChance * 20;
-    leaderBoard();
+    gameState.playerPoint = maxChance * 20; // formula to create point
+    updateLeaderBoard();
     return;
 };
 
@@ -67,6 +46,7 @@ if (userGuess > 100 || userGuess <= 0) {
 } else if (userGuess > secretNumber) {
     statusBar.textContent = "Too big try smaller";
     maxChance--;
+    // Guard Clause: If checkChance returns true (Game Over), stop execution here
     if (checkChance()) {
         return;
     };
@@ -83,16 +63,13 @@ if (userGuess > 100 || userGuess <= 0) {
 };
 };
 
-
-deleteButton.onclick = deleteNumber;
-guessButton.onclick = startGame;
-
 function deleteNumber() {
     numberGuess.value ="";
 };
 
 function reset() {
     maxChance = 10;
+    numberGuess.value ="";
     chance.textContent = maxChance;
     secretNumber = Math.floor(Math.random()*100)+1;
     statusBar.textContent ="Click Guess to Continue!";
@@ -103,7 +80,10 @@ function reset() {
 gameForm.addEventListener("submit", function(e) {
     e.preventDefault();
     startGame();
-})
+});
+
+deleteButton.onclick = deleteNumber;
+guessButton.onclick = startGame;
 
 resetButton.onclick = reset;
 
