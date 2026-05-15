@@ -110,7 +110,9 @@
           </nav>
         </section>
         <section class="w-auto flex flex-1 justify-end items-end">
-          <h1 class="scroll-container align-bottom text-4xl mb-8 mr-8">
+          <h1
+            class="scroll-container align-bottom mb-8 mr-8 text-xl md:text-4xl"
+          >
             <span class="scroll-text flex flex-col px-4">
               <span>Join Us</span>
               <span>In This Interactive</span>
@@ -124,8 +126,8 @@
       <section
         class="flex flex-col gap-6 my-10 items-center px-10 min-h-screen"
       >
-        <h2 id="home" class="my-10 text-4xl">About Us</h2>
-        <p class="text-2xl">
+        <h2 id="home" class="my-10 text-2xl md:text-4xl">About Us</h2>
+        <p class="text-xl md:text-2xl">
           RevoFun is a modern mini game platform created to deliver fun,
           interactive, and competitive experiences for players of all ages. From
           fast reaction challenges to strategy-based games, every title is
@@ -140,43 +142,45 @@
       >
         <h2 id="games" class="self-center text-4xl text-center">Games List</h2>
 
-        <div class="card-container text-xl">
-          <div class="h-[180px] flex items-center">
-            <div class="slide-card gap-4 mx-10 p-3 grid grid-cols-[30%_70%]">
-              <div>
-                <a href="./pages/clickerGame.html">
-                  <img
-                    src="./image/game1.jpg"
-                    class="w-[200px] h-[200px]"
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div>
-                <p class="text-center text-2xl text-gray-300">Clicker Games</p>
-                <p class="text-gray-400">
-                  Push your reflexes to the limit in this fast-paced clicking
-                  challenge. Every click increases your score while bonus timers
-                  keep the action alive. Stay focused, react quickly, and fight
-                  for a spot on the leaderboard.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex slide-card gap-8 mx-10 p-3 grid grid-cols-[30%_70%]">
-            <div>
-              <a href="./pages/numberGuessing.html">
+        <div class="card-container">
+          <div class="slide-card gap-8 mx-10 p-3 grid grid-cols-[30%_70%]">
+            <div class="flex justify-center items-center">
+              <a href="./pages/clickerGame.html">
                 <img
-                  src="./image/game2.jpeg"
-                  class="w-[200px] h-[200px]"
+                  src="./image/game1.jpg"
+                  class="w-[120px] h-[120px] md:w-[200px] md:h-[200px]"
                   alt=""
                 />
               </a>
             </div>
             <div>
-              <p class="text-center text-2xl text-gray-300">Number Guessing</p>
-              <p class="text-gray-400">
+              <p class="text-center text-2xl text-gray-300 md:text-4xl">
+                Clicker Games
+              </p>
+              <p class="text-gray-400 md:text-2xl">
+                Push your reflexes to the limit in this fast-paced clicking
+                challenge. Every click increases your score while bonus timers
+                keep the action alive. Stay focused, react quickly, and fight
+                for a spot on the leaderboard.
+              </p>
+            </div>
+          </div>
+
+          <div class="slide-card gap-8 mx-10 p-3 grid grid-cols-[30%_70%]">
+            <div class="flex justify-center items-center">
+              <a href="./pages/numberGuessing.html">
+                <img
+                  src="./image/game2.jpeg"
+                  class="w-[120px] h-[120px] md:w-[200px] md:h-[200px]"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div>
+              <p class="text-center text-2xl text-gray-300 md:text-4xl">
+                Number Guessing
+              </p>
+              <p class="text-gray-400 md:text-2xl">
                 Put your logic and prediction skills to the test by discovering
                 the hidden number before your chances run out. Use every clue
                 carefully, think strategically, and earn the highest score
@@ -186,20 +190,20 @@
           </div>
 
           <div class="slide-card mx-10 p-3 gap-4 grid grid-cols-[30%_70%]">
-            <div>
+            <div class="flex justify-center items-center">
               <a href="./pages/rockPaperScissor.html">
                 <img
                   src="./image/game3.jpg"
-                  class="w-[200px] h-[200px]"
+                  class="w-[120px] h-[120px] md:w-[200px] md:h-[200px]"
                   alt=""
                 />
               </a>
             </div>
             <div>
-              <p class="text-center text-2xl text-gray-300">
+              <p class="text-center text-2xl text-gray-300 md:text-4xl">
                 Rock Paper Scissor
               </p>
-              <p class="text-gray-400">
+              <p class="text-gray-400 md:text-2xl">
                 Battle against the computer in the ultimate Rock Paper Scissor
                 showdown. Win rounds, build your score, and race to reach the
                 victory point target before your opponent takes the lead.

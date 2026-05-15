@@ -6,7 +6,7 @@ let computerScoreText = document.getElementById("computerScore");
 let userDisplay = document.getElementById("userDisplay");
 let computerDisplay = document.getElementById("computerDisplay");
 let statusBar = document.getElementById("statusBar");
-resultArea
+
 //game animated
 let userAnimation = document.getElementById("userAnimation");
 let computerAnimation = document.getElementById("computerAnimation");
