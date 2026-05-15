@@ -7,6 +7,24 @@
     <script src="../JS/utils.js" defer></script>
     <script src="../JS/rockPaperScissor.js" defer></script>
     <title>RevoFun|RockPapaerScissors</title>
+    <style>
+      @keyframes wiggle {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(-45deg);
+        }
+        75% {
+          transform: rotate(45deg);
+        }
+      }
+
+      .animate-wiggle {
+        animation: wiggle 0.5s ease-in-out 4;
+      }
+    </style>
   </head>
   <body
     class="flex justify-center items-center bg-[linear-gradient(to_bottom,#2a2a2a,#171717,#0a0a0a)] text-white h-screen"
@@ -36,7 +54,7 @@
 
     <form
       id="container"
-      class="flex flex-col text-white justify-center gap-5 items-center mb-10 border p-5 rounded-xl w-100 h-100 absolute bg-black"
+      class="hidden flex flex-col text-white justify-center gap-5 items-center mb-10 border p-5 rounded-xl w-100 h-100 absolute bg-black"
     >
       <label for="userName">Username</label>
       <input
@@ -52,23 +70,46 @@
     </form>
     <section class="flex flex-col gap-10">
       <h1 class="text-3xl text-center my-5">ROCK-PAPER-SCISSOR GAMES</h1>
+
+      <div id="resultArea">
+        <div id="choiceImage" class="flex justify-center gap-5">
+          <span>
+            <img
+              id="userAnimation"
+              src="../image/rockIcon.png"
+              width="100px"
+              alt=""
+            />
+          </span>
+          <span class="scale-x-[-1]">
+            <img
+              id="computerAnimation"
+              src="../image/rockIcon.png"
+              width="100px"
+              alt=""
+            />
+          </span>
+        </div>
+        <div class="mt-10">
+          <p id="statusBar" class="text-3xl text-center mb-6">Let's Play</p>
+        </div>
+      </div>
+
       <form id="gameForm" class="flex gap-10 my-5 justify-center">
         <div class="grid">
-          <label class="text-3xl">Rock</label>
-          <button id="rockButton" class="text-8xl cursor-pointer">✊</button>
+          <button id="rockButton" class="text-6xl cursor-pointer">✊</button>
+          <label class="text-xl text-center">Rock</label>
         </div>
         <div class="grid">
-          <label class="text-3xl">Paper</label>
-          <button id="paperButton" class="text-8xl cursor-pointer">✋</button>
+          <button id="paperButton" class="text-6xl cursor-pointer">✋</button>
+          <label class="text-xl text-center">Paper</label>
         </div>
         <div class="grid">
-          <label class="text-3xl">Scissor</label>
-          <button id="scissorButton" class="text-8xl cursor-pointer">✌️</button>
+          <button id="scissorButton" class="text-6xl cursor-pointer">✌️</button>
+          <label class="text-xl text-center">Scissor</label>
         </div>
       </form>
-      <section>
-        <p id="statusBar" class="text-3xl text-center mb-6">Let's Play</p>
-      </section>
+      <section></section>
       <section class="flex justify-center gap-20">
         <div>
           <p>Player Scores</p>

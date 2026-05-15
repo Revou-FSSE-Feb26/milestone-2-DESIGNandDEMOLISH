@@ -23,7 +23,7 @@ timer.innerHTML = setTimer;
 //update data
 function updateLeaderBoard() {
     leaderBoardList = leaderBoard(leaderBoardList);
-    localStorage.setItem("leaderboard2", JSON.stringify(leaderBoardList));
+    localStorage.setItem("leaderboard", JSON.stringify(leaderBoardList));
 };
 
 function gameStart() {

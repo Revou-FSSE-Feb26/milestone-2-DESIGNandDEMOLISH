@@ -6,8 +6,17 @@ let computerScoreText = document.getElementById("computerScore");
 let userDisplay = document.getElementById("userDisplay");
 let computerDisplay = document.getElementById("computerDisplay");
 let statusBar = document.getElementById("statusBar");
+resultArea
+//game animated
+let userAnimation = document.getElementById("userAnimation");
+let computerAnimation = document.getElementById("computerAnimation");
+userAnimation.style.width = "150px";
+userAnimation.style.height = "150px";
 
+computerAnimation.style.width = "150px";
+computerAnimation.style.height = "150px";
 
+//game variables
 let gameForm = document.getElementById("gameForm");
 let maxPoint = 10;
 let playerScore = 0;
@@ -20,7 +29,7 @@ let leaderBoardList = saved? JSON.parse(saved) : [];
 //update data
 function updateLeaderBoard() {
     leaderBoardList = leaderBoard(leaderBoardList);
-    localStorage.setItem("leaderboard2", JSON.stringify(leaderBoardList));
+    localStorage.setItem("leaderboard3", JSON.stringify(leaderBoardList));
 };
 
 function gameStart (event) {
@@ -61,11 +70,28 @@ function gameStart (event) {
     // Early exit: If the game is already over, do not process the new click
     if (checkStatus()) return;
 
-    if (userChoice === computerChoise) {
+    
+
+    //animated variable
+    const imagePath = {
+    '✊' : '../image/rockIcon.png',
+    '✋' : '../image/paperIcon.png',
+    '✌️' : '../image/scissorIcon.png'
+    };
+    function imageWiggle() {
+        userAnimation.classList.add('animate-wiggle');
+        computerAnimation.classList.add('animate-wiggle');
+        setTimeout(() => {
+            userAnimation.classList.remove('animate-wiggle');
+            computerAnimation.classList.remove('animate-wiggle');
+            userAnimation.src = imagePath[userChoice];
+            computerAnimation.src = imagePath[computerChoise];
+
+            if (userChoice === computerChoise) {
         statusBar.textContent = "It's Tie!!";
         userDisplay.innerHTML = userChoice;
         computerDisplay.innerHTML = computerChoise;
-        return;
+        
     } else if (userChoice === "✊" && computerChoise === "✌️") {
         statusBar.textContent ="You Win!";
         playerScore++;
@@ -98,6 +124,11 @@ function gameStart (event) {
         computerDisplay.innerHTML = computerChoise;
         if (checkStatus()) return;
     };
+        },2000);
+    };
+
+    imageWiggle();
+    
 };
 
 function reset() {
@@ -115,8 +146,9 @@ replay.addEventListener("click",reset);
 gameForm.addEventListener("submit", function(e) {
     e.preventDefault();
     gameStart(e);
+    userAnimation.src = '../image/rockIcon.png';
+    computerAnimation.src = '../image/rockIcon.png';
 });
-
 
 userContainer.addEventListener("submit",function(event) {
     event.preventDefault();
