@@ -93,5 +93,8 @@ userContainer.addEventListener("submit",function(event) {
     event.preventDefault();
     gameState.playerName = userName.value;
     userContainer.style.display = "none";
+    
+    let gameArea = document.getElementById('gameArea')
+    gameArea.classList.remove('hidden')
 });
 replay.addEventListener("click", reset);

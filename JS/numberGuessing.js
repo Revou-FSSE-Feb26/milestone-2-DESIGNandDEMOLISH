@@ -87,8 +87,10 @@ guessButton.onclick = startGame;
 
 resetButton.onclick = reset;
 
+
 userContainer.addEventListener("submit",function(event) {
     event.preventDefault();
     gameState.playerName = userName.value;
     userContainer.style.display = "none";
+    document.querySelector('body > section.h-100.w-100.rounded-2xl.bg-gray-600.text-white').style.display = "block";
 });

@@ -150,8 +150,11 @@ gameForm.addEventListener("submit", function(e) {
     computerAnimation.src = '../image/rockIcon.png';
 });
 
+document.querySelector('body > section.flex.flex-col.gap-10').style.display = 'none';
+
 userContainer.addEventListener("submit",function(event) {
     event.preventDefault();
     gameState.playerName = userName.value;
     userContainer.style.display = "none";
+    document.querySelector('body > section.flex.flex-col.gap-10').style.display = 'flex';
 });
